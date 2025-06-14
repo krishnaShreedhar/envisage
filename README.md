@@ -1,4 +1,4 @@
-# Envisage, AI Planner
+# Envisage, AGI Planner
 
 The project is named as Envisage, the act of contemplation or conception of ideas 
 towards a series of desirable future events.
@@ -34,3 +34,12 @@ Thus, a journey planner first, so that I can offload and create journey plans ah
 and at scale!
 
 </details>
+
+## Architecture
+
+## Build 
+
+## Usage
+
+## References
+

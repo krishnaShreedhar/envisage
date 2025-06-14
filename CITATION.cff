@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below:"
+authors:
+  - family-names: Kodate
+    given-names: Shreedhar Shreeshail
+    orcid: https://orcid.org/0009-0000-6750-9766
+title: "Envisage, AGI Planner"
+version: 0.0.1
+date-released: 2025-06-14

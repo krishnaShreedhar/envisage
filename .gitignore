@@ -1,0 +1,17 @@
+/data/
+/models/
+/outputs/
+/experiments/
+
+*.xml
+*.iml
+*.DS_Store
+*.csv
+*.png
+*.jpg
+*.jpeg
+*.h5
+*.pth
+slurm*
+
+*.ipynb_checkpoints

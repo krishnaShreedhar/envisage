@@ -1,0 +1,54 @@
+start_point: Yosemite Valley Visitor Center
+month: February
+group:
+  adults: 2
+  kids: 0
+  elderly: 0
+preferences:
+  - easy and kid friendly hikes
+  - nature photography
+days:
+  - day: 1
+    attractions:
+      - name: Lower Yosemite Falls Trail
+        num_miles: "≈1 mile round-trip"
+        how_to_reach: "Paved loop begins adjacent to Visitor Center; well-signed trailhead and easy parking"
+        water_station: "No stations on trail; refill at Visitor Center beforehand"
+        food_recommendation: "Carry snacks; food available at Yosemite Village post-hike"
+        public_restrooms: "At trailhead (0 min walk)"
+        weather_conditions: "Possible icy patches; wear waterproof boots and microspikes"
+        is_drivable: "Drive to lot; fully accessible, paved, flat walk"
+      - name: Cook's Meadow Loop
+        num_miles: "≈1 mile loop"
+        how_to_reach: "5 min walk or shuttle from Visitor Center; follow signs onto meadow boardwalk"
+        water_station: "None en route; refill beforehand"
+        food_recommendation: "Picnic-friendly; Village eateries available after walk"
+        public_restrooms: "Multiple along Southside Drive, a few minutes away"
+        weather_conditions: "Cold and exposed; bring layered clothing"
+        is_drivable: "Drive or shuttle to parking; flat, stroller-friendly paved trail"
+      - name: Mirror Lake Trail
+        num_miles: "≈2 miles round-trip"
+        how_to_reach: "Take shuttle to stop #17 or drive to Curry Village, then paved path north to lake"
+        water_station: "None; bring 1 L per person"
+        food_recommendation: "Snacks essential; picnic at lake possible"
+        public_restrooms: "Vault toilets ~0.5 mile from trailhead & at lake turnaround"
+        weather_conditions: "Pack microspikes—trail can be icy; winter reflections great for photography"
+        is_drivable: "Park at Curry Village, then walk; flat paved trail"
+  - day: 2
+    attractions:
+      - name: Sentinel Dome
+        num_miles: "≈2.2 miles round-trip"
+        how_to_reach: "Drive Glacier Point Road (plowed in winter), trail begins at signed lot"
+        water_station: "None; carry at least 1 L per adult"
+        food_recommendation: "Bring lunch/snacks; no facilities onsite"
+        public_restrooms: "At trailhead parking (0 min walk)"
+        weather_conditions: "Snow possible; bring traction aids and warm layers"
+        is_drivable: "Accessible winter road; moderate uphill walk on dome trail"
+      - name: Horsetail Fall Viewpoint (El Capitan East)
+        num_miles: "≈0 miles from parking"
+        how_to_reach: "Drive east on Northside Drive just past El Capitan picnic area; small turnout"
+        water_station: "None; bring water from vehicle"
+        food_recommendation: "Carry a thermos/snacks; no nearby amenities"
+        public_restrooms: "Closest valley restrooms several miles back"
+        weather_conditions: "Evening wind; dress warmly—great lighting mid‑February"
+        is_drivable: "Pull-in turnout; ~10 steps to viewpoint, very accessible"

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plan Your Journey</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="scripts/form.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">Explorer</a></li>
+        <li><a href="form.html">Form</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form id="journeyForm">
+      <label>Destination:</label>
+      <input type="text" name="destination" maxlength="200" required>
+
+      <label>Preferences:</label>
+      <input type="text" name="preferences" maxlength="200" required>
+
+      <label>Number of Days:</label>
+      <input type="number" name="days" min="1" required>
+
+      <label>Month:</label>
+      <select name="month">
+        <option>January</option><option>February</option> <!-- Add all months -->
+      </select>
+
+      <label>Additional Requirements:</label>
+      <textarea name="additional" maxlength="1000"></textarea>
+
+      <button type="submit">Send Journey Plan</button>
+    </form>
+  </main>
+</body>
+</html>

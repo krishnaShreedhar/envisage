@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Destinations</title>
+  <link rel="stylesheet" href="styles/main.css"/>
+  <script src="scripts/explorer.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">Explorer</a></li>
+        <li><a href="form.html">Form</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="explorer-section">
+      <label for="destinationSelect">Destination:</label>
+      <select id="destinationSelect"></select>
+
+      <label for="monthSelect">Month:</label>
+      <select id="monthSelect"></select>
+
+      <div id="detailsTabs" class="tabs">
+        <!-- JavaScript will populate day-wise plan here -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>

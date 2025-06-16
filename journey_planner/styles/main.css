@@ -1,0 +1,60 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #fbd4b4, #c9e7ff); /* Sunset to sky */
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffb347;
+  list-style: none;
+  padding: 1rem;
+}
+
+.menu li a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.menu li a:hover,
+.menu li a:active {
+  background-color: #ff8000;
+}
+
+.calligraphic {
+  font-family: 'Brush Script MT', cursive;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+.image-ribbon {
+  display: flex;
+  overflow-x: scroll;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.image-ribbon img {
+  height: 200px;
+  border-radius: 12px;
+}
+
+.tabs {
+  margin-top: 2rem;
+}
+
+.zigzag {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.zigzag.reverse {
+  flex-direction: row-reverse;
+}

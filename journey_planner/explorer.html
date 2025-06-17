@@ -1,36 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Explore Destinations</title>
-  <link rel="stylesheet" href="styles/main.css"/>
-  <script src="scripts/explorer.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - Explorer</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/explorer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="explorer.html">Explorer</a></li>
-        <li><a href="form.html">Form</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Journey Planner</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="explorer.html" class="nav-link active">Explorer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="form.html" class="nav-link">Plan Request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section class="explorer-section">
-      <label for="destinationSelect">Destination:</label>
-      <select id="destinationSelect"></select>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Section -->
+        <section class="explorer-header">
+            <div class="container">
+                <h1>Explore Destinations</h1>
+                <p>Discover amazing travel plans and detailed itineraries for your next adventure</p>
+            </div>
+        </section>
 
-      <label for="monthSelect">Month:</label>
-      <select id="monthSelect"></select>
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="container">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label for="destination-select" class="filter-label">
+                            <span class="label-icon">📍</span>
+                            Choose Destination
+                        </label>
+                        <select id="destination-select" class="filter-select">
+                            <option value="">Select a destination...</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
 
-      <div id="detailsTabs" class="tabs">
-        <!-- JavaScript will populate day-wise plan here -->
-      </div>
-    </section>
-  </main>
+                    <div class="filter-group">
+                        <label for="month-select" class="filter-label">
+                            <span class="label-icon">📅</span>
+                            Select Month
+                        </label>
+                        <select id="month-select" class="filter-select">
+                            <option value="">Select a month...</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="container">
+                <!-- Loading State -->
+                <div id="loading-state" class="loading-container hidden">
+                    <div class="spinner"></div>
+                    <p>Loading travel plans...</p>
+                </div>
+
+                <!-- No Selection State -->
+                <div id="no-selection-state" class="placeholder-container">
+                    <div class="placeholder-content">
+                        <div class="placeholder-icon">🗺️</div>
+                        <h3>Ready to Explore?</h3>
+                        <p>Select a destination and month above to view detailed travel plans and itineraries.</p>
+                    </div>
+                </div>
+
+                <!-- No Results State -->
+                <div id="no-results-state" class="placeholder-container hidden">
+                    <div class="placeholder-content">
+                        <div class="placeholder-icon">🔍</div>
+                        <h3>No Plans Found</h3>
+                        <p>We don't have any travel plans for this destination and month combination yet.</p>
+                    </div>
+                </div>
+
+                <!-- Travel Plan Display -->
+                <div id="travel-plan-display" class="travel-plan-container hidden">
+                    <div class="plan-header">
+                        <h2 id="plan-title">Travel Plan</h2>
+                        <div class="plan-meta">
+                            <span id="plan-destination" class="meta-item"></span>
+                            <span id="plan-month" class="meta-item"></span>
+                            <span id="plan-group" class="meta-item"></span>
+                        </div>
+                    </div>
+
+                    <div class="plan-preferences">
+                        <h3>Preferences & Interests</h3>
+                        <div id="preferences-list" class="preferences-tags"></div>
+                    </div>
+
+                    <!-- Day Tabs -->
+                    <div class="day-tabs-container">
+                        <div id="day-tabs" class="day-tabs">
+                            <!-- Tabs will be populated by JavaScript -->
+                        </div>
+
+                        <div id="day-content" class="day-content">
+                            <!-- Day content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Journey Planner. Discover your next adventure.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/navigation.js"></script>
+    <script src="data/travel-plans.js"></script>
+    <script src="scripts/explorer.js"></script>
 </body>
 </html>

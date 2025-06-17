@@ -1,44 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Plan Your Journey</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <script src="scripts/form.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - Plan Request</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="explorer.html">Explorer</a></li>
-        <li><a href="form.html">Form</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Journey Planner</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="explorer.html" class="nav-link">Explorer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="form.html" class="nav-link active">Plan Request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <form id="journeyForm">
-      <label>Destination:</label>
-      <input type="text" name="destination" maxlength="200" required>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Section -->
+        <section class="form-header">
+            <div class="container">
+                <h1>Request Your Custom Journey Plan</h1>
+                <p>Tell us about your dream destination and we'll create a personalized travel plan just for you</p>
+            </div>
+        </section>
 
-      <label>Preferences:</label>
-      <input type="text" name="preferences" maxlength="200" required>
+        <!-- Form Section -->
+        <section class="form-section">
+            <div class="container">
+                <div class="form-container">
+                    <form id="journey-form" class="journey-form" novalidate>
+                        <!-- Destination Information -->
+                        <div class="form-section-group">
+                            <h3 class="section-title">
+                                <span class="section-icon">📍</span>
+                                Destination Details
+                            </h3>
 
-      <label>Number of Days:</label>
-      <input type="number" name="days" min="1" required>
+                            <div class="form-group">
+                                <label for="destination-name" class="form-label">
+                                    Destination Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="destination-name"
+                                    name="destinationName"
+                                    class="form-input"
+                                    maxlength="200"
+                                    required
+                                    placeholder="e.g., Yosemite National Park, Paris, Tokyo"
+                                >
+                                <div class="char-counter">
+                                    <span id="destination-counter">0</span>/200 characters
+                                </div>
+                                <div class="error-message" id="destination-error"></div>
+                            </div>
+                        </div>
 
-      <label>Month:</label>
-      <select name="month">
-        <option>January</option><option>February</option> <!-- Add all months -->
-      </select>
+                        <!-- Travel Preferences -->
+                        <div class="form-section-group">
+                            <h3 class="section-title">
+                                <span class="section-icon">❤️</span>
+                                Travel Preferences
+                            </h3>
 
-      <label>Additional Requirements:</label>
-      <textarea name="additional" maxlength="1000"></textarea>
+                            <div class="form-group">
+                                <label for="preferences" class="form-label">
+                                    List of Preferences *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="preferences"
+                                    name="preferences"
+                                    class="form-input"
+                                    maxlength="200"
+                                    required
+                                    placeholder="e.g., hiking, photography, local cuisine, family-friendly activities"
+                                >
+                                <div class="char-counter">
+                                    <span id="preferences-counter">0</span>/200 characters
+                                </div>
+                                <div class="error-message" id="preferences-error"></div>
+                            </div>
+                        </div>
 
-      <button type="submit">Send Journey Plan</button>
-    </form>
-  </main>
+                        <!-- Trip Duration -->
+                        <div class="form-section-group">
+                            <h3 class="section-title">
+                                <span class="section-icon">⏰</span>
+                                Trip Duration & Timing
+                            </h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="num-days" class="form-label">
+                                        Number of Days *
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="num-days"
+                                        name="numDays"
+                                        class="form-input"
+                                        min="1"
+                                        max="365"
+                                        required
+                                        placeholder="e.g., 5"
+                                    >
+                                    <div class="error-message" id="days-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="travel-month" class="form-label">
+                                        Month of Travel *
+                                    </label>
+                                    <select id="travel-month" name="travelMonth" class="form-select" required>
+                                        <option value="">Select month...</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                    <div class="error-message" id="month-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Requirements -->
+                        <div class="form-section-group">
+                            <h3 class="section-title">
+                                <span class="section-icon">📝</span>
+                                Additional Requirements
+                            </h3>
+
+                            <div class="form-group">
+                                <label for="additional-requirements" class="form-label">
+                                    Additional Travel Requirements
+                                </label>
+                                <textarea
+                                    id="additional-requirements"
+                                    name="additionalRequirements"
+                                    class="form-textarea"
+                                    maxlength="1000"
+                                    rows="6"
+                                    placeholder="Please share any specific requirements, accessibility needs, budget considerations, accommodation preferences, dietary restrictions, or other important details for your trip..."
+                                ></textarea>
+                                <div class="char-counter">
+                                    <span id="requirements-counter">0</span>/1000 characters
+                                </div>
+                                <div class="error-message" id="requirements-error"></div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" id="reset-btn" class="btn btn-secondary">
+                                Clear Form
+                            </button>
+                            <button type="submit" id="submit-btn" class="btn btn-primary">
+                                <span class="btn-text">Send Request</span>
+                                <span class="btn-loading hidden">
+                                    <span class="spinner"></span>
+                                    Sending...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Message -->
+                <div id="success-message" class="success-container hidden">
+                    <div class="success-content">
+                        <div class="success-icon">✅</div>
+                        <h3>Request Sent Successfully!</h3>
+                        <p>Thank you for your journey plan request. We'll get back to you soon with a personalized travel itinerary.</p>
+                        <button id="new-request-btn" class="btn btn-primary">
+                            Create New Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Journey Planner. Discover your next adventure.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/form.js"></script>
 </body>
 </html>

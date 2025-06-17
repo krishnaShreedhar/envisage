@@ -1,34 +1,131 @@
-<!-- index.html (Home Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journey Planner</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <script src="scripts/nav.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - Home</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="explorer.html">Explorer</a></li>
-        <li><a href="form.html">Form</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Journey Planner</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="explorer.html" class="nav-link">Explorer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="form.html" class="nav-link">Plan Request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </nav>
-  </header>
-  <main>
-    <section class="welcome-section">
-      <h1 class="calligraphic">Welcome to Journey Planner</h1>
-      <div class="image-ribbon">
-        <img src="images/travel1.jpg" alt="Travel 1">
-        <img src="images/travel2.jpg" alt="Travel 2">
-        <img src="images/travel3.jpg" alt="Travel 3">
-        <!-- Add more images as needed -->
-      </div>
-    </section>
-  </main>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-container">
+                <h1 class="welcome-title">Welcome to Your Next Adventure</h1>
+                <p class="welcome-subtitle">Discover breathtaking destinations and create unforgettable memories</p>
+            </div>
+        </section>
+
+        <!-- Image Ribbon Section -->
+        <section class="image-ribbon-section">
+            <div class="ribbon-container">
+                <h2 class="ribbon-title">Explore Amazing Destinations</h2>
+                <div class="image-ribbon">
+                    <div class="ribbon-scroll">
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" alt="Mountain Lake" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Mountain Lakes</h3>
+                                <p>Serene alpine beauty</p>
+                            </div>
+                        </div>
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=250&fit=crop" alt="Forest Trail" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Forest Trails</h3>
+                                <p>Peaceful woodland walks</p>
+                            </div>
+                        </div>
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1464822759844-d150baec0494?w=400&h=250&fit=crop" alt="Desert Sunset" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Desert Sunsets</h3>
+                                <p>Breathtaking golden hours</p>
+                            </div>
+                        </div>
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=400&h=250&fit=crop" alt="Ocean Waves" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Ocean Views</h3>
+                                <p>Endless blue horizons</p>
+                            </div>
+                        </div>
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=400&h=250&fit=crop" alt="City Skyline" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Urban Adventures</h3>
+                                <p>Vibrant city experiences</p>
+                            </div>
+                        </div>
+                        <div class="ribbon-item">
+                            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=250&fit=crop" alt="Snowy Mountains" loading="lazy">
+                            <div class="ribbon-overlay">
+                                <h3>Winter Wonderland</h3>
+                                <p>Snow-capped peaks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ribbon-controls">
+                    <button class="ribbon-btn prev-btn" aria-label="Previous images">&lt;</button>
+                    <button class="ribbon-btn next-btn" aria-label="Next images">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2>Start Planning Your Journey</h2>
+                <p>Explore destinations, discover hidden gems, and create your perfect travel itinerary</p>
+                <div class="cta-buttons">
+                    <a href="explorer.html" class="cta-btn primary">Explore Destinations</a>
+                    <a href="form.html" class="cta-btn secondary">Request Custom Plan</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Journey Planner. Discover your next adventure.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/home.js"></script>
 </body>
 </html>

@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>About Journey Planner</title>
-  <link rel="stylesheet" href="styles/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - About</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="explorer.html">Explorer</a></li>
-        <li><a href="form.html">Form</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Journey Planner</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="explorer.html" class="nav-link">Explorer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="form.html" class="nav-link">Plan Request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link active">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section class="timeline">
-      <div class="zigzag">
-        <img src="images/pic1.jpg"><p>Travel expands the mind and fills the soul.</p>
-      </div>
-      <div class="zigzag reverse">
-        <p>Embrace the journey, not just the destination.</p><img src="images/pic2.jpg">
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Section -->
+        <section class="about-header">
+            <div class="container">
+                <h1>About Journey Planner</h1>
+                <p>Crafting unforgettable travel experiences, one journey at a time</p>
+            </div>
+        </section>
+
+        <!-- Travel Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="section-title">Our Travel Stories</h2>
+
+                <div class="timeline">
+                    <!-- Timeline Item 1 (Right) -->
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1464822759844-d150baec0494?w=400&h=300&fit=crop" alt="Mountain Adventure" loading="lazy">
+                            </div>
+                            <div class="timeline-text">
+                                <h3>Mountain Adventures</h3>
+                                <div class="timeline-date">Since 2020</div>
+                                <p>We started our journey helping adventurers discover the most breathtaking mountain destinations. From challenging peaks to serene alpine lakes, we've curated experiences that connect travelers with nature's most spectacular displays.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 (Left) -->
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-text">
+                                <h3>Cultural Explorations</h3>
+                                <div class="timeline-date">2021</div>
+                                <p>Expanding beyond nature, we began crafting cultural immersion experiences. Our team discovered that the most memorable journeys combine stunning landscapes with rich local traditions, creating deeper connections between

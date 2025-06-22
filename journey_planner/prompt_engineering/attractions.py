@@ -1,4 +1,3 @@
-
 who_is_traveling = "family"
 num_adults = 2
 num_kids = 0
@@ -47,4 +46,5 @@ Create a detailed list of {num_attractions} attractions in the month of {month_t
 # need to clean up
 ch_nnbsp = " "
 
-print(prompt)
+if __name__ == '__main__':
+    print(prompt)

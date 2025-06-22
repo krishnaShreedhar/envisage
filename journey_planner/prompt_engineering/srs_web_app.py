@@ -135,4 +135,5 @@ list_requirements = [
 
 prompt = "".join(list_requirements)
 
-print(prompt)
+if __name__ == '__main__':
+    print(prompt)

@@ -14,4 +14,7 @@
 *.pth
 slurm*
 
-*.ipynb_checkpoints
+.ipynb_checkpoints
+/explainers/computer_vision/northern_lights/data/
+
+__pycache__

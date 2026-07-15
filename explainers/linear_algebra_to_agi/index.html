@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Matrices to Minds — a guided history of how machines learned to predict</title>
+<meta name="description" content="An interactive explainer tracing one toy sentence through 70 years of math: linear algebra, probability, classical ML, neural networks, transformers, GPTs, agents, and the open question of AGI.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#act-0">Skip to content</a>
+
+<nav class="progress-rail" aria-label="Reading progress through the eight acts">
+  <ol class="progress-dots">
+    <li><a class="dot" href="#act-0" data-act="0" aria-label="Cold open"><span>0</span></a></li>
+    <li><a class="dot" href="#act-1" data-act="1" aria-label="Act 1, Foundations"><span>1</span></a></li>
+    <li><a class="dot" href="#act-2" data-act="2" aria-label="Act 2, Classical ML"><span>2</span></a></li>
+    <li><a class="dot" href="#act-3" data-act="3" aria-label="Act 3, Neural Networks"><span>3</span></a></li>
+    <li><a class="dot" href="#act-4" data-act="4" aria-label="Act 4, Deep Learning at Scale"><span>4</span></a></li>
+    <li><a class="dot" href="#act-5" data-act="5" aria-label="Act 5, The Transformer"><span>5</span></a></li>
+    <li><a class="dot" href="#act-6" data-act="6" aria-label="Act 6, GPTs"><span>6</span></a></li>
+    <li><a class="dot" href="#act-7" data-act="7" aria-label="Act 7, Agentic Systems"><span>7</span></a></li>
+    <li><a class="dot" href="#act-8" data-act="8" aria-label="Act 8, Toward AGI"><span>8</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- ============ ACT 0 — COLD OPEN ============ -->
+<section id="act-0" class="act act--cold-open" data-act="0" data-hue="225">
+  <div class="act-inner">
+    <p class="kicker">A guided intuition-builder</p>
+    <h1 class="cold-open-title">The cat sat on the <span class="blank">___</span></h1>
+    <p class="cold-open-lede">
+      That's it. That's the whole example. A five-word sentence with a gap at the end,
+      the kind you'd give a child, or a very small machine.
+    </p>
+    <p class="cold-open-promise">
+      By the end of this page, you'll watch <strong>seventy years of mathematics</strong>
+      compete to fill that blank — from a hand-counted probability table to a neural
+      network deciding, on its own initiative, to check the weather and text you about it.
+      Same sentence, every stage. Watch what changes, and notice why each change was
+      <em>necessary</em>, not just fashionable.
+    </p>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>scroll</span>
+      <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 1v20M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 1 — FOUNDATIONS ============ -->
+<section id="act-1" class="act" data-act="1" data-hue="225">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 1 · Foundations</span>
+    <h2>Before anything can learn, it has to count</h2>
+
+    <div class="prose">
+      <p>
+        A computer can't read <em>"cat."</em> It can only hold numbers. So the very
+        first move — the one everything else is built on — is to turn words into
+        vectors: lists of numbers that place each word somewhere in a space, positioned
+        so that words used in similar ways end up near each other.
+      </p>
+      <p>
+        Give <strong>cat</strong>, <strong>dog</strong>, <strong>mat</strong>,
+        <strong>grass</strong>, and <strong>floor</strong> two coordinates each —
+        how "outdoor" a word feels, and how strongly it associates with an animal
+        sitting on it — and a crude picture of meaning falls out of pure geometry.
+      </p>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="vectors">
+      <svg viewBox="0 0 480 340" role="img" aria-label="A 2D scatter plot placing the words cat, dog, mat, grass, and floor as vectors from the origin, with cat and mat close in direction.">
+        <line class="axis" x1="40" y1="300" x2="460" y2="300"/>
+        <line class="axis" x1="40" y1="300" x2="40" y2="20"/>
+        <text class="axis-label" x="450" y="318">outdoor →</text>
+        <text class="axis-label axis-label--y" x="-160" y="30" transform="rotate(-90)">animal-affinity →</text>
+        <g class="vec" data-vec="cat"><line x1="40" y1="300" x2="150" y2="90"/><circle cx="150" cy="90" r="5"/><text x="158" y="86">cat</text></g>
+        <g class="vec" data-vec="dog"><line x1="40" y1="300" x2="180" y2="100"/><circle cx="180" cy="100" r="5"/><text x="188" y="96">dog</text></g>
+        <g class="vec" data-vec="mat"><line x1="40" y1="300" x2="120" y2="230"/><circle cx="120" cy="230" r="5"/><text x="128" y="226">mat</text></g>
+        <g class="vec" data-vec="floor"><line x1="40" y1="300" x2="150" y2="250"/><circle cx="150" cy="250" r="5"/><text x="158" y="246">floor</text></g>
+        <g class="vec" data-vec="grass"><line x1="40" y1="300" x2="380" y2="140"/><circle cx="380" cy="140" r="5"/><text x="388" y="136">grass</text></g>
+      </svg>
+      <p class="diagram-caption">Toy coordinates, hand-placed for intuition — not learned from data (yet).</p>
+    </div>
+
+    <div class="formula-block" data-formula="dot-product">
+      <p class="formula-oneliner">Multiply matching components of two vectors and add them up. Vectors that point the same way get a large score.</p>
+      <div class="tex" data-display="true">a \cdot b = \sum_i a_i b_i</div>
+      <dl class="symbol-breakdown">
+        <div><dt>a, b</dt><dd>the two word-vectors being compared</dd></div>
+        <div><dt>aᵢ, bᵢ</dt><dd>their individual coordinates</dd></div>
+        <div><dt>Σᵢ</dt><dd>sum over every coordinate</dd></div>
+      </dl>
+      <div class="mini-compute" data-compute="dot-product">
+        <button class="compute-btn" type="button" data-pair="cat-mat">cat · mat</button>
+        <button class="compute-btn" type="button" data-pair="cat-grass">cat · grass</button>
+        <div class="compute-result" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>
+        Geometry gives us similarity. But to actually fill in the blank we want a
+        <em>probability</em>: given everything we've seen, how likely is each ending?
+        The oldest clean answer to that question is
+        <a href="https://en.wikipedia.org/wiki/An_Essay_towards_solving_a_Problem_in_the_Doctrine_of_Chances" target="_blank" rel="noopener">Bayes' theorem</a> —
+        flip a conditional probability around using only things you can actually count.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="bayes">
+      <p class="formula-oneliner">The probability of a hypothesis given evidence, computed from how likely that evidence is under each hypothesis.</p>
+      <div class="tex" data-display="true">P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}</div>
+      <dl class="symbol-breakdown">
+        <div><dt>P(A∣B)</dt><dd>posterior — probability the next word is A, given context B</dd></div>
+        <div><dt>P(B∣A)</dt><dd>likelihood — how often B shows up when A is true</dd></div>
+        <div><dt>P(A)</dt><dd>prior — how common A is on its own</dd></div>
+        <div><dt>P(B)</dt><dd>evidence — a normalizing constant</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="bayes-table">
+      <p class="diagram-caption">A six-sentence toy corpus. Count how often "sat on the ___" is followed by each word:</p>
+      <div class="bayes-corpus">
+        <p>"The cat sat on the <b>mat</b>." · "The dog sat on the <b>mat</b>." · "The cat sat on the <b>mat</b>." · "The cat sat on the <b>grass</b>." · "The cat slept on the mat." · "The dog ran on the grass."</p>
+      </div>
+      <svg viewBox="0 0 480 130" role="img" aria-label="Bar chart: P(mat given sat on the) is 0.75, P(grass given sat on the) is 0.25">
+        <g class="bayes-bar" data-target="212"><rect class="bar-track" x="90" y="20" width="330" height="28" rx="4"/><rect class="bar-fill" x="90" y="20" width="0" height="28" rx="4"/><text class="bar-label" x="20" y="39">mat</text><text class="bar-value" x="430" y="39">0.75</text></g>
+        <g class="bayes-bar" data-target="80"><rect class="bar-track" x="90" y="70" width="330" height="28" rx="4"/><rect class="bar-fill" x="90" y="70" width="0" height="28" rx="4"/><text class="bar-label" x="12" y="89">grass</text><text class="bar-value" x="430" y="89">0.25</text></g>
+      </svg>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">1763</span> Thomas Bayes, <em>"An Essay towards solving a Problem in the Doctrine of Chances,"</em> published posthumously by Richard Price.</li>
+        <li><span class="date">1812</span> Pierre-Simon Laplace generalizes and popularizes the theorem in <em>Théorie analytique des probabilités</em>.</li>
+        <li><span class="date">1805 / 1809</span> Adrien-Marie Legendre publishes least squares first; Carl Friedrich Gauss publishes his own derivation in 1809 and claims prior use since 1795 — a genuine priority dispute.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      Counting works when the world is six sentences long. It collapses the moment
+      context gets rich — you can't count your way through infinite sentences. We need
+      something that <em>generalizes</em>.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 2 — CLASSICAL ML ============ -->
+<section id="act-2" class="act" data-act="2" data-hue="250">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 2 · Classical ML</span>
+    <h2>Stop counting. Start fitting a line.</h2>
+
+    <div class="prose">
+      <p>
+        Instead of a lookup table, describe each candidate ending with numeric features —
+        say, <em>indoor-ness</em> and <em>surface-softness</em> — and let a model learn
+        <strong>weights</strong> that combine those features into a score. This is the
+        same "mat vs. grass" question, but now it's a line drawn through feature space.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="linreg">
+      <p class="formula-oneliner">Predict a score as a weighted sum of features, plus an offset.</p>
+      <div class="tex" data-display="true">\hat{y} = Wx + b</div>
+      <dl class="symbol-breakdown">
+        <div><dt>x</dt><dd>the input features</dd></div>
+        <div><dt>W</dt><dd>learned weights — how much each feature matters</dd></div>
+        <div><dt>b</dt><dd>bias — a baseline offset</dd></div>
+        <div><dt>ŷ</dt><dd>the predicted score</dd></div>
+      </dl>
+    </div>
+
+    <div class="prose">
+      <p>
+        A raw score isn't a probability. Squash it through a <strong>sigmoid</strong> and
+        it becomes one — a smooth S-curve pinned between 0 and 1.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="sigmoid">
+      <p class="formula-oneliner">Squashes any real number into a probability between 0 and 1.</p>
+      <div class="tex" data-display="true">\sigma(z) = \frac{1}{1 + e^{-z}}</div>
+      <dl class="symbol-breakdown">
+        <div><dt>z</dt><dd>the raw score, Wx + b</dd></div>
+        <div><dt>σ(z)</dt><dd>output probability</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="decision-boundary">
+      <svg viewBox="0 0 480 340" role="img" aria-label="Scatter plot of toy sentence endings in feature space with a diagonal decision boundary separating indoor endings from outdoor endings.">
+        <line class="axis" x1="40" y1="300" x2="460" y2="300"/>
+        <line class="axis" x1="40" y1="300" x2="40" y2="20"/>
+        <text class="axis-label" x="420" y="318">surface-softness →</text>
+        <text class="axis-label axis-label--y" x="-160" y="30" transform="rotate(-90)">indoor-ness →</text>
+        <line class="decision-line" x1="60" y1="60" x2="420" y2="290"/>
+        <g class="pt pt--indoor"><circle cx="110" cy="90" r="6"/></g>
+        <g class="pt pt--indoor"><circle cx="140" cy="130" r="6"/></g>
+        <g class="pt pt--indoor"><circle cx="90" cy="150" r="6"/></g>
+        <g class="pt pt--indoor"><circle cx="170" cy="80" r="6"/></g>
+        <g class="pt pt--outdoor"><circle cx="330" cy="200" r="6"/></g>
+        <g class="pt pt--outdoor"><circle cx="380" cy="240" r="6"/></g>
+        <g class="pt pt--outdoor"><circle cx="300" cy="260" r="6"/></g>
+        <g class="pt pt--outdoor"><circle cx="360" cy="180" r="6"/></g>
+        <text class="region-label" x="90" y="45">mat, rug, floor…</text>
+        <text class="region-label" x="330" y="315">grass, lawn…</text>
+      </svg>
+      <p class="diagram-caption">Every point is a toy sentence ending. The line is the boundary the model has to find.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        How does the model find that line? It needs a way to measure "how wrong am I
+        right now" — a <strong>loss function</strong> — and a way to shrink that wrongness
+        step by step.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="cross-entropy">
+      <p class="formula-oneliner">Penalizes the model in proportion to how far its predicted probability was from the true label.</p>
+      <div class="tex" data-display="true">L = -\sum_i y_i \log(\hat{y}_i)</div>
+      <dl class="symbol-breakdown">
+        <div><dt>yᵢ</dt><dd>true label, 0 or 1</dd></div>
+        <div><dt>ŷᵢ</dt><dd>predicted probability</dd></div>
+        <div><dt>L</dt><dd>total loss — lower is better</dd></div>
+      </dl>
+    </div>
+
+    <div class="formula-block" data-formula="gd">
+      <p class="formula-oneliner">Nudge every parameter a little in the direction that most reduces the loss.</p>
+      <div class="tex" data-display="true">\theta := \theta - \alpha \nabla L(\theta)</div>
+      <dl class="symbol-breakdown">
+        <div><dt>θ</dt><dd>the model's parameters — weights and bias</dd></div>
+        <div><dt>α</dt><dd>learning rate — the size of each step</dd></div>
+        <div><dt>∇L(θ)</dt><dd>the gradient — which way is "worse," and by how much</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="gd-bowl">
+      <svg viewBox="0 0 480 220" role="img" aria-label="A bowl-shaped loss curve with a dot rolling down toward the minimum over successive gradient descent steps.">
+        <path class="bowl" d="M 40 40 C 140 200, 340 200, 440 40"/>
+        <circle class="gd-ball" cx="70" cy="55" r="7"/>
+        <text class="axis-label" x="200" y="215">training steps →</text>
+        <text class="axis-label axis-label--y" x="-90" y="20" transform="rotate(-90)">loss</text>
+      </svg>
+      <p class="diagram-caption">Gradient descent: each step follows the slope downhill.</p>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">1805 / 1809</span> Least squares (Legendre, then Gauss) is the earliest ancestor of fitting a line to data by minimizing error.</li>
+        <li><span class="date">1847</span> Augustin-Louis Cauchy describes the earliest form of gradient-descent-style iterative minimization.</li>
+        <li><span class="date">1958</span> The logistic function's use for binary classification is formalized in statistics, later absorbed wholesale into machine learning.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      A single line can only bend the world in one way. Real language needs curves,
+      combinations, exceptions-to-exceptions. One line isn't enough — but a
+      <em>network</em> of them might be.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 3 — NEURAL NETWORKS ============ -->
+<section id="act-3" class="act" data-act="3" data-hue="270">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 3 · Neural Networks</span>
+    <h2>One line, then a vote among many lines</h2>
+
+    <div class="prose">
+      <p>
+        A single neuron is barely more than the logistic regression we just built:
+        weight the inputs, add a bias, squash the result through a nonlinearity.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="neuron">
+      <p class="formula-oneliner">A single neuron: weight the inputs, add a bias, pass it through a nonlinearity.</p>
+      <div class="tex" data-display="true">y = f\left(\sum_i w_i x_i + b\right)</div>
+      <dl class="symbol-breakdown">
+        <div><dt>xᵢ</dt><dd>inputs</dd></div>
+        <div><dt>wᵢ</dt><dd>weights</dd></div>
+        <div><dt>b</dt><dd>bias</dd></div>
+        <div><dt>f</dt><dd>nonlinear activation function</dd></div>
+        <div><dt>y</dt><dd>this neuron's output</dd></div>
+      </dl>
+    </div>
+
+    <div class="prose">
+      <p>
+        The trick is stacking many of them. Feed our two toy features — indoor-ness,
+        surface-softness — into a small hidden layer, and let each hidden neuron learn
+        its own bent little rule. The output layer then votes across those rules.
+      </p>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="network">
+      <svg viewBox="0 0 480 280" role="img" aria-label="A small feedforward network: two input nodes, three hidden nodes, one output node, with weighted edges.">
+        <g class="edges">
+          <line data-w="0.8" x1="70" y1="90" x2="230" y2="50"/>
+          <line data-w="0.3" x1="70" y1="90" x2="230" y2="140"/>
+          <line data-w="0.6" x1="70" y1="90" x2="230" y2="230"/>
+          <line data-w="0.5" x1="70" y1="190" x2="230" y2="50"/>
+          <line data-w="0.9" x1="70" y1="190" x2="230" y2="140"/>
+          <line data-w="0.2" x1="70" y1="190" x2="230" y2="230"/>
+          <line data-w="0.7" x1="230" y1="50" x2="400" y2="140"/>
+          <line data-w="0.9" x1="230" y1="140" x2="400" y2="140"/>
+          <line data-w="0.4" x1="230" y1="230" x2="400" y2="140"/>
+        </g>
+        <g class="node node--input"><circle cx="70" cy="90" r="16"/><text x="70" y="65">indoor-ness</text></g>
+        <g class="node node--input"><circle cx="70" cy="190" r="16"/><text x="70" y="225">softness</text></g>
+        <g class="node node--hidden"><circle cx="230" cy="50" r="14"/></g>
+        <g class="node node--hidden"><circle cx="230" cy="140" r="14"/></g>
+        <g class="node node--hidden"><circle cx="230" cy="230" r="14"/></g>
+        <g class="node node--output"><circle cx="400" cy="140" r="16"/><text x="400" y="112">P(grass)</text></g>
+        <text class="layer-label" x="70" y="255">input</text>
+        <text class="layer-label" x="230" y="255">hidden</text>
+        <text class="layer-label" x="400" y="255">output</text>
+      </svg>
+      <button class="replay-btn" type="button" data-replay="network">▸ forward pass</button>
+      <p class="diagram-caption">Edge thickness is weight magnitude. Watch activation flow left to right.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        But how does the network learn <em>which</em> weights to use? The same gradient
+        descent as before — just applied one layer at a time, using the chain rule to
+        trace blame backward from the output to every weight that contributed to it.
+        That backward pass is <strong>backpropagation</strong>.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="backprop">
+      <p class="formula-oneliner">The chain rule traces how much a weight buried deep in the network contributed to the final error.</p>
+      <div class="tex" data-display="true">\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial w}</div>
+      <dl class="symbol-breakdown">
+        <div><dt>∂L/∂w</dt><dd>what we want — how the loss changes if this weight changes</dd></div>
+        <div><dt>∂L/∂y</dt><dd>how the loss changes as this neuron's output changes</dd></div>
+        <div><dt>∂y/∂w</dt><dd>how this neuron's output changes as the weight changes</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="backprop-pulse">
+      <p class="diagram-caption">Same network, gradient flowing right to left:</p>
+      <button class="replay-btn" type="button" data-replay="backprop">◂ backward pass</button>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">1943</span> Warren McCulloch &amp; Walter Pitts, <em>"A Logical Calculus of the Ideas Immanent in Nervous Activity"</em> — the first mathematical neuron model.</li>
+        <li><span class="date">1950</span> Alan Turing, <em>"Computing Machinery and Intelligence,"</em> proposes the Turing Test.</li>
+        <li><span class="date">1956</span> The Dartmouth Summer Research Project coins the term "artificial intelligence."</li>
+        <li><span class="date">1957 / 1958</span> Frank Rosenblatt introduces the Perceptron (1957 Cornell technical report, formalized in a 1958 <em>Psychological Review</em> paper) — the first trainable single-layer network.</li>
+        <li><span class="date">1969</span> Marvin Minsky &amp; Seymour Papert's <em>Perceptrons</em> shows single-layer networks can't learn XOR — funding dries up, the first "AI winter" begins.</li>
+        <li><span class="date">1986</span> Rumelhart, Hinton &amp; Williams popularize backpropagation for multilayer networks in <em>Nature</em>, reopening the field.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      A three-node hidden layer can separate mat from grass. It cannot read a paragraph,
+      recognize a face, or understand grammar. For that, we need more layers — a lot
+      more — and a reason to believe more layers actually help.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 4 — DEEP LEARNING AT SCALE ============ -->
+<section id="act-4" class="act" data-act="4" data-hue="290">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 4 · Deep Learning at Scale</span>
+    <h2>Stack it deeper. Now keep it trainable.</h2>
+
+    <div class="prose">
+      <p>
+        Stacking layers sounds like a free lunch — more layers, more expressive power.
+        In practice, early deep networks fell apart: gradients passed back through many
+        layers of sigmoid neurons would shrink at each step, until the earliest layers
+        received a signal too faint to learn from. The <strong>vanishing gradient</strong>
+        problem stalled deep networks for years.
+      </p>
+      <p>
+        Two unglamorous fixes mattered more than any single clever architecture: the
+        <strong>ReLU</strong> activation (<code>f(z) = max(0, z)</code>), which doesn't
+        squash its gradient toward zero the way sigmoid does, and enough <strong>compute
+        and data</strong> — GPUs originally built for video games turned out to be
+        extraordinarily good at the matrix multiplications neural networks are made of.
+      </p>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="vanishing-gradient">
+      <svg viewBox="0 0 480 160" role="img" aria-label="A signal traveling backward through eight stacked layers, fading with each layer under sigmoid, staying strong under ReLU.">
+        <g class="grad-row grad-row--sigmoid">
+          <text class="row-label" x="10" y="35">sigmoid</text>
+          <g class="grad-layers"></g>
+        </g>
+        <g class="grad-row grad-row--relu">
+          <text class="row-label" x="10" y="110">ReLU</text>
+          <g class="grad-layers"></g>
+        </g>
+      </svg>
+      <p class="diagram-caption">Gradient magnitude traveling backward through 8 stacked layers.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        With those fixes, scale started to pay off in ways that felt qualitatively new.
+        Convolutional networks learned to see. Recurrent networks and their gated
+        successor, the LSTM, learned to hold a thread of context across a sequence — the
+        first real attempt at machines "remembering" the start of a sentence by the time
+        they reached the end of it.
+      </p>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">1989</span> Yann LeCun applies backpropagation to convolutional networks for handwritten digit recognition.</li>
+        <li><span class="date">1997</span> Sepp Hochreiter &amp; Jürgen Schmidhuber publish the Long Short-Term Memory (LSTM) architecture.</li>
+        <li><span class="date">1997</span> IBM's Deep Blue defeats Garry Kasparov — a search-and-heuristics triumph, not a learning one, but a milestone in the public "can machines think" narrative.</li>
+        <li><span class="date">2006</span> Geoffrey Hinton's work on deep belief networks helps re-brand and revive multilayer learning as "deep learning."</li>
+        <li><span class="date">2012</span> Krizhevsky, Sutskever &amp; Hinton's AlexNet wins ImageNet by a huge margin, trained on GPUs — the moment deep learning became impossible to ignore.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      LSTMs process a sentence one word at a time, in order — which means word five has
+      to wait for words one through four before it even starts, and by the time it
+      arrives, the memory of word one has already begun to fade. That sequential
+      bottleneck is about to break.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 5 — THE TRANSFORMER ============ -->
+<section id="act-5" class="act" data-act="5" data-hue="315">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 5 · The Transformer</span>
+    <h2>Stop reading in order. Look at everything at once.</h2>
+
+    <div class="prose">
+      <p>
+        Instead of marching through <em>"The cat sat on the"</em> one token at a time,
+        let every token look directly at every other token, and decide for itself which
+        ones matter. That's <strong>self-attention</strong>: each word forms a query
+        ("what am I looking for?"), compares it against every word's key ("what do I
+        offer?"), and blends in their values in proportion to the match.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="attention">
+      <p class="formula-oneliner">Each token asks a question (Q), compares it against every token's label (K), and blends their content (V) in proportion to the match.</p>
+      <div class="tex" data-display="true">\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V</div>
+      <dl class="symbol-breakdown">
+        <div><dt>Q</dt><dd>queries — what each token is looking for</dd></div>
+        <div><dt>K</dt><dd>keys — what each token offers</dd></div>
+        <div><dt>V</dt><dd>values — the content actually blended in</dd></div>
+        <div><dt>dₖ</dt><dd>key dimension — scales the scores so they don't explode</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="attention-heatmap">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Attention arcs from the token 'the' at the end of the sentence back to each earlier token, with 'sat' and 'cat' receiving the strongest weight.">
+        <g class="attn-tokens">
+          <text x="40" y="200">The</text>
+          <text x="115" y="200">cat</text>
+          <text x="190" y="200">sat</text>
+          <text x="265" y="200">on</text>
+          <text x="340" y="200">the</text>
+          <text x="420" y="200" class="attn-query">___</text>
+        </g>
+        <g class="attn-arcs">
+          <path class="attn-arc" data-weight="0.05" d="M 420 190 Q 230 40 40 190"/>
+          <path class="attn-arc" data-weight="0.32" d="M 420 190 Q 267 70 115 190"/>
+          <path class="attn-arc" data-weight="0.38" d="M 420 190 Q 305 90 190 190"/>
+          <path class="attn-arc" data-weight="0.10" d="M 420 190 Q 342 120 265 190"/>
+          <path class="attn-arc" data-weight="0.15" d="M 420 190 Q 380 150 340 190"/>
+        </g>
+      </svg>
+      <p class="diagram-caption">Predicting the blank: "cat" and "sat" carry the most weight — subject and verb constrain the object most.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        Because every token can attend to every other token simultaneously, there's no
+        sequential bottleneck — the whole sentence is processed in parallel, on hardware
+        built exactly for that kind of parallel matrix math. That single property is why
+        transformers scaled where RNNs stalled.
+      </p>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">2013</span> Mikolov et al., Word2Vec — dense word embeddings learned from raw text at scale.</li>
+        <li><span class="date">2014</span> Goodfellow et al. introduce GANs; Sutskever, Vinyals &amp; Le introduce sequence-to-sequence learning; Kingma &amp; Ba publish the Adam optimizer.</li>
+        <li><span class="date">2015</span> He et al., ResNet — residual connections make networks hundreds of layers deep trainable.</li>
+        <li><span class="date">June 2017</span> Vaswani et al., <em>"Attention Is All You Need"</em> (arXiv:1706.03762, NeurIPS 2017) — the Transformer.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      A transformer that can weigh context is still just a scoring function. Turn it
+      around to predict one token at a time, train it on a large enough slice of the
+      internet, and something else starts to happen.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 6 — GPTs ============ -->
+<section id="act-6" class="act" data-act="6" data-hue="340">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 6 · GPTs</span>
+    <h2>One token at a time, at enormous scale</h2>
+
+    <div class="prose">
+      <p>
+        A GPT is a decoder-only transformer trained on one deceptively simple objective:
+        given everything before this point, predict what comes next.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="autoregressive">
+      <p class="formula-oneliner">Predict the next token from everything before it — repeat one token at a time to generate whole sentences.</p>
+      <div class="tex" data-display="true">P(x_t \mid x_{<t})</div>
+    </div>
+
+    <div class="prose">
+      <p>
+        Run our sentence through and the final layer produces a raw score for every word
+        in the vocabulary. <strong>Softmax</strong> turns those scores into a probability
+        distribution.
+      </p>
+    </div>
+
+    <div class="formula-block" data-formula="softmax">
+      <p class="formula-oneliner">Turn a list of raw scores into probabilities that sum to 1, exaggerating the gaps between them.</p>
+      <div class="tex" data-display="true">\text{softmax}(z)_i = \frac{e^{z_i}}{\sum_j e^{z_j}}</div>
+      <dl class="symbol-breakdown">
+        <div><dt>zᵢ</dt><dd>raw score for candidate word i</dd></div>
+        <div><dt>e^zᵢ</dt><dd>exponentiate — keeps every term positive</dd></div>
+        <div><dt>Σⱼe^zⱼ</dt><dd>normalizer, summed over the whole vocabulary</dd></div>
+      </dl>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="softmax-bars">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Bar chart of softmax probabilities over five candidate next words: mat 0.52, grass 0.27, floor 0.13, roof 0.05, moon 0.03.">
+        <g class="sm-bar" data-target="0.52"><rect class="bar-track" x="70" y="10" width="26" height="180"/><rect class="bar-fill" x="70" y="190" width="26" height="0"/><text class="sm-label" x="83" y="205">mat</text><text class="sm-value" y="0">0.52</text></g>
+        <g class="sm-bar" data-target="0.27"><rect class="bar-track" x="150" y="10" width="26" height="180"/><rect class="bar-fill" x="150" y="190" width="26" height="0"/><text class="sm-label" x="163" y="205">grass</text><text class="sm-value" y="0">0.27</text></g>
+        <g class="sm-bar" data-target="0.13"><rect class="bar-track" x="230" y="10" width="26" height="180"/><rect class="bar-fill" x="230" y="190" width="26" height="0"/><text class="sm-label" x="243" y="205">floor</text><text class="sm-value" y="0">0.13</text></g>
+        <g class="sm-bar" data-target="0.05"><rect class="bar-track" x="310" y="10" width="26" height="180"/><rect class="bar-fill" x="310" y="190" width="26" height="0"/><text class="sm-label" x="323" y="205">roof</text><text class="sm-value" y="0">0.05</text></g>
+        <g class="sm-bar" data-target="0.03"><rect class="bar-track" x="390" y="10" width="26" height="180"/><rect class="bar-fill" x="390" y="190" width="26" height="0"/><text class="sm-label" x="403" y="205">moon</text><text class="sm-value" y="0">0.03</text></g>
+      </svg>
+      <button class="replay-btn" type="button" data-replay="softmax">▸ run softmax</button>
+      <p class="diagram-caption">"The cat sat on the ___" — the model has never seen this exact sentence, only millions like it.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        Nothing here is qualitatively new — it's the same attention, the same softmax,
+        the same gradient descent from three acts ago. What changed was scale: parameter
+        counts, training tokens, and compute all grew by orders of magnitude, and
+        capabilities that weren't explicitly trained for — arithmetic, translation,
+        rudimentary reasoning — began to <em>emerge</em> as side effects of getting very
+        good at next-token prediction. Instruction tuning and RLHF then shaped that raw
+        prediction engine into something that follows requests rather than just
+        completing text.
+      </p>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">2018</span> BERT (Google) and GPT-1 (OpenAI) both apply transformers to large-scale language pretraining.</li>
+        <li><span class="date">2019</span> GPT-2 demonstrates surprisingly coherent long-form generation.</li>
+        <li><span class="date">2020</span> GPT-3 (175B parameters); Kaplan et al. publish neural scaling laws.</li>
+        <li><span class="date">2021–2022</span> Codex, DALL·E, Chinchilla scaling laws, InstructGPT / RLHF.</li>
+        <li><span class="date">Nov 30, 2022</span> ChatGPT launches publicly — the mainstream inflection point.</li>
+        <li><span class="date">2023</span> GPT-4; open-weight LLaMA models; multimodal models become standard.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      A model that predicts text well can also predict which <em>action</em> comes next
+      — including the action of using a tool, reading its result, and deciding what to
+      do with that result. Wrap the prediction loop around itself, and it starts to act.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 7 — AGENTIC SYSTEMS ============ -->
+<section id="act-7" class="act" data-act="7" data-hue="15">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 7 · Agentic Systems</span>
+    <h2>The same model, wrapped in a loop</h2>
+
+    <div class="prose">
+      <p>
+        Give the model a goal instead of a sentence to finish — <em>"look up the weather
+        and text me if it's raining"</em> — plus a set of tools it's allowed to call and
+        a scratchpad of memory, and let it run its own prediction loop repeatedly: think,
+        act, observe, repeat, until the goal is satisfied.
+      </p>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="agent-loop">
+      <svg viewBox="0 0 480 320" role="img" aria-label="A loop diagram: plan, call get_weather tool, observe result, decide, call send_text tool if raining, done.">
+        <g class="loop-path">
+          <path d="M 240 40 A 130 130 0 1 1 239.9 40" fill="none"/>
+        </g>
+        <g class="loop-node" data-step="0" transform="translate(240,40)"><circle r="26"/><text y="5">1</text><text class="loop-caption" y="-38">Goal: check weather,<br/>text if raining</text></g>
+        <g class="loop-node" data-step="1" transform="translate(370,140)"><circle r="26"/><text y="5">2</text><text class="loop-caption" y="45">call get_weather()</text></g>
+        <g class="loop-node" data-step="2" transform="translate(330,270)"><circle r="26"/><text y="5">3</text><text class="loop-caption" y="45">observe: "rain, 68°F"</text></g>
+        <g class="loop-node" data-step="3" transform="translate(150,270)"><circle r="26"/><text y="5">4</text><text class="loop-caption" y="45">decide: raining → notify</text></g>
+        <g class="loop-node" data-step="4" transform="translate(110,140)"><circle r="26"/><text y="5">5</text><text class="loop-caption" y="45">call send_text()</text></g>
+      </svg>
+      <button class="replay-btn" type="button" data-replay="agent-loop">▸ run the loop</button>
+      <p class="diagram-caption">Same next-token predictor from Act 6 — now the "tokens" it predicts are tool calls.</p>
+    </div>
+
+    <div class="prose">
+      <p>
+        Multi-agent systems push this further: one model plans, another critiques,
+        another executes, passing partial results back and forth — trading the reliability
+        of a single long chain of thought for the redundancy of several shorter, checked
+        ones. None of this required new mathematics. It required trusting the prediction
+        loop enough to let it run unsupervised for more than one step.
+      </p>
+    </div>
+
+    <details class="sources-panel">
+      <summary>Sources &amp; dates</summary>
+      <ul>
+        <li><span class="date">2023</span> Function calling / tool use becomes a standard capability across major model APIs.</li>
+        <li><span class="date">2023</span> Retrieval-augmented generation (RAG) becomes a common pattern for grounding model outputs in external data.</li>
+        <li><span class="date">2023–2024</span> Early autonomous agent frameworks and agentic coding tools proliferate; multi-agent orchestration patterns emerge.</li>
+      </ul>
+    </details>
+
+    <p class="transition-hook">
+      A model that plans, calls tools, and checks its own work is doing something that
+      looks a great deal like reasoning. The honest question left is whether it's doing
+      the same kind of thing a mind does — and what, if anything, is still missing.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 8 — TOWARD AGI ============ -->
+<section id="act-8" class="act act--agi" data-act="8" data-hue="35">
+  <div class="act-inner">
+    <span class="act-eyebrow">Act 8 · Toward AGI?</span>
+    <h2>What's still missing — three honest guesses</h2>
+
+    <div class="prose">
+      <p>
+        Nobody agrees on how much further this path — bigger transformers, more data,
+        tool use — actually goes toward general intelligence. Three positions, each held
+        by serious researchers, are worth holding in tension rather than resolving.
+      </p>
+    </div>
+
+    <div class="hypothesis-cards">
+      <article class="hypo-card">
+        <h3>Scale is (mostly) enough</h3>
+        <p>
+          Capabilities have emerged reliably from scaling parameters, data, and compute
+          so far, with no clean wall in sight. Richard Sutton's
+          <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener">"Bitter Lesson"</a>
+          argues that general methods leveraging computation consistently beat
+          hand-engineered ones. Kaplan et al.'s scaling laws gave this position a
+          quantitative backbone.
+        </p>
+      </article>
+      <article class="hypo-card">
+        <h3>Scale plus new architecture</h3>
+        <p>
+          Next-token prediction over text may not be enough to build an internal model of
+          how the physical world works. Yann LeCun has argued for
+          <strong>world models</strong> and architectures like JEPA that learn by predicting
+          in an abstract representation space rather than in token space.
+        </p>
+      </article>
+      <article class="hypo-card">
+        <h3>Neural-symbolic hybrid</h3>
+        <p>
+          Pure neural networks are pattern matchers at heart, and struggle with
+          systematic, compositional reasoning. Gary Marcus and others argue that robust
+          reasoning needs some marriage of learned perception with explicit symbolic
+          structure — not one paradigm winning outright.
+        </p>
+      </article>
+    </div>
+
+    <div class="prose">
+      <p>
+        Other candidate ingredients get raised often enough to name: <strong>continual
+        learning</strong> (updating beliefs after deployment instead of freezing at a
+        training cutoff), <strong>inference-time search and reasoning</strong> (spending
+        more computation per problem rather than more parameters), and
+        <strong>embodiment</strong> (the argument, associated with roboticists like
+        Rodney Brooks, that some kinds of understanding may only arise from acting in a
+        physical world).
+      </p>
+    </div>
+
+    <div class="diagram-wrap" data-diagram="branch-paths">
+      <svg viewBox="0 0 480 200" role="img" aria-label="A single path branching into three diverging paths, representing open hypotheses about the route to AGI.">
+        <path class="branch-line" d="M 40 100 L 180 100"/>
+        <path class="branch-line" d="M 180 100 L 440 30"/>
+        <path class="branch-line" d="M 180 100 L 440 100"/>
+        <path class="branch-line" d="M 180 100 L 440 170"/>
+        <circle class="branch-dot" cx="40" cy="100" r="6"/>
+        <circle class="branch-dot" cx="440" cy="30" r="5"/>
+        <circle class="branch-dot" cx="440" cy="100" r="5"/>
+        <circle class="branch-dot" cx="440" cy="170" r="5"/>
+        <text x="20" y="85">today</text>
+        <text x="330" y="20">scale</text>
+        <text x="330" y="95">+ architecture</text>
+        <text x="330" y="165">+ symbolic</text>
+      </svg>
+    </div>
+
+    <div class="prose closing-reflection">
+      <p>
+        Return, one last time, to <em>"The cat sat on the ___."</em> A hand-counted
+        table got it right seventy-some years before anyone had heard the word
+        "transformer." What changed across every act of this page was never the goal —
+        fill in the blank, sensibly — but the machinery's capacity to generalize past
+        the examples it was shown, and, in the last two acts, to act on its own
+        conclusions. Whether that trajectory bends into something we'd call a mind is,
+        honestly, still an open question. Anyone who tells you they know the timeline is
+        selling something.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>An explainer built end-to-end around one five-word sentence. Dates verified against primary sources where available; treat exact attribution as best-effort scholarship, not certainty.</p>
+</footer>
+
+</main>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script defer src="script.js"></script>
+</body>
+</html>
